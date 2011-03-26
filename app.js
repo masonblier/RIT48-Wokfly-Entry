@@ -3,6 +3,7 @@
  * Module dependencies.
  */
 
+var sys = require('sys');
 var ejs = require('ejs');
 var express = require('express');
 var mongoose = require('mongoose');
@@ -43,9 +44,30 @@ models.defineModels(mongoose, function() {
 
 // Routes
 
+app.get('/testdata', function(req, res){
+  /*{
+    'iid'         : 2,
+    'name'        : "Choco-Pistachio Meringues",
+    'points'      : 1,
+    'tags'        : ["Cookies", "Dessert"],
+    'description' : "Low-calorie meringue cookies are great for dieters who yearn for just a nibble of something sweet--like this recipe, which is made with pistachio nuts and dipped in chocolate."
+  }*/
+
+  var r1 = new Recipe();
+  r1.iid = 1;
+  r1.name =  "Grilled Chicken Panini";
+  r1.points =  22;
+  r1.tags =  ["Chicken", "Sandwich"];
+  r1.description =  "Simple ingredients make for big flavor in this grilled chicken panini with pesto and provolone cheese.";
+
+  r1.save(function () { res.redirect("/"); });
+});
+
 app.get('/', function(req, res){
-  res.render('index', {
-    recipes: Recipe.find().sort({iid: -1}).limit(20)
+  Recipe.find({}, function (err, recipes) {
+    res.render('index', {
+      recipes: recipes
+    });
   });
 });
 

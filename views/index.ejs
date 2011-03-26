@@ -1,4 +1,4 @@
-<nav id="tagbar">
+<!-- Not implemented <nav id="tagbar">
   <ul>
     <li><a href="">Burgers</a></li>
     <li><a href="">Pasta</a></li>
@@ -6,9 +6,21 @@
     <li><a href="">Vegan</a></li>
     <li><a href="">Mexican</a></li>
   </ul>
-</div>
+</div> -->
 
-<%= partial('recipeshort', recipes) %>
+<% recipes.forEach(function(r) { %>
+<article class="stream">
+  <img id="screen" src="_/img/<%= r.iid %>.jpg" alt="" />
+  <div id="points">
+    <div id="up">&nbsp;</div>
+    <div id="count"><%= r.points %></div>
+    <div id="down">&nbsp;</div>
+  </div>
+  <h1><%= r.name %></h1>
+  <div id="streamby">by <a href="">No one</a></div>
+  <div id="content"><%= r.description %></div>
+</article>
+<% }); %>
 
 <!--<aside>
   <h2>Sidebar Content</h2>
