@@ -1,0 +1,230 @@
+
+/*-  CSS "libraries"
+----------------------------------------------------------------------*/
+@import url("reset.css");
+
+
+/*-  Core, patch-free design
+----------------------------------------------------------------------*/
+@import url("core.css");
+
+
+/*-  Browser-specific patches
+----------------------------------------------------------------------*/
+/*\*//*/
+@import url("patches/mac-ie5.css");
+/**/
+
+/*- Global Style
+----------------------------------------------------------------------*/
+html
+{
+  font-family: Tahoma, Geneva, sans-serif;
+  color: #444;
+  background-color: #fff8ed;
+  margin: 25px 50px;
+  min-width: 600px;
+}
+
+/*- Header Style
+----------------------------------------------------------------------*/
+
+header
+{
+  clear: both;
+  height: 80px;
+}
+
+header h1
+{
+  font-size: 3.6em;
+  float: left;
+}
+
+header h2
+{
+  float: left;
+  clear: both;
+  font-size: 0.8em;
+}
+
+header a
+{
+  text-decoration: none;
+  color: #444;
+}
+
+header nav#headermenu
+{
+  float: right;
+  margin: 20px 0px;
+}
+
+nav#headermenu ul li
+{
+  display: inline;
+  font-size: 1.2em;
+  padding: 5px 10px;
+  margin: 0px 10px;
+}
+
+nav#headermenu ul li:hover
+{
+  background-color: #b9dc63;
+}
+
+#logowok
+{
+  color: #5ba825;
+  font-family: "Lucida Console", Monaco, Monospace;
+  font-weight: 800;
+}
+
+#logofly
+{
+  margin-left: -20px;
+  font-family: "Segoe Script", "Brush Script MT", Georgia, serif;
+  font-style: italic;
+}
+
+/*- Category Bar
+----------------------------------------------------------------------*/
+
+nav#tagbar {
+  background: #000206;
+  font-size: 1.2em;
+  height: 30px;
+  line-height: 20px;
+  margin: 10px auto;
+  padding: 0;
+  text-align: center;
+  
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+	
+nav#tagbar ul { list-style: none; margin: 0px auto; }
+nav#tagbar ul li 
+{ 
+  float: left; 
+  display: inline; 
+  margin: 0px;
+}
+
+nav#tagbar a:link, nav#tagbar a:visited {
+  color: #fff;
+  display: inline-block;
+  height: 20px;
+  padding: 5px 1.5em;
+  text-decoration: none;
+  
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  
+  -moz-box-shadow: inset 0px 0px 10px #000;
+  -webkit-box-shadow: inset 0px 0px 10px #000;
+  box-shadow: inset 0px 0px 10px #000;
+}
+nav#tagbar a:hover, nav#tagbar a:active,
+nav#tagbar nav .active a:link, nav#tagbar .active a:visited {
+  background: #5d8005;
+  color: #fff;
+  text-shadow: none !important;
+}
+
+/*- Article
+----------------------------------------------------------------------*/
+
+article.stream
+{
+  background: #fff;
+  font-size: 1em;
+  margin: 10px auto;
+  padding: 0px 0px;
+  min-height: 62px;
+  
+  border: 1px solid #d7e9a8;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;  
+}
+
+article.stream div
+{
+  clear: none;
+}
+
+article.stream #content
+{
+  margin: 10px 75px;
+}
+
+article.stream img#screen
+{
+  width: 60px;
+  height: 60px;
+  float: left;
+  margin: 10px 10px 5px 10px;
+  border: 1px solid #d7e9a8;
+}
+
+
+article.stream h1 { font-size: 1.2em; margin-top: 8px; }
+article.stream #streamby { font-size: 0.8em; color: #575; font-weight: normal; margin-bottom: 8px; }
+article.stream #streamby a { color: #5ba825; text-decoration: none; }
+
+article.stream #points
+{
+  float: right;
+  text-align: center;
+  margin: 10px;
+  font-size: 0.8em;
+  padding: 0px;
+  width: 50px;
+  
+  background-color: #fff; /*fff4d2 effaff*/
+  border: 1px solid #f26c0d;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+article.stream #points div { clear: both; }
+
+article.stream #points #count
+{
+  font-size: 2em;
+  line-height: 36px;
+}
+
+article.stream #points #up
+{
+  font-size: 0.8em;
+  margin: -1px;
+  padding: 0px;
+  background-color: #ffecd6;
+  border: 1px solid #f26c0d;
+  -moz-border-radius: 5px 0px 5px 0px;
+  -webkit-border-radius: 5px 0px 5px 0px;
+  border-radius: 5px 0px 5px 0px;
+  float: left;
+  width: 50%;
+}
+
+article.stream #points #down
+{
+  font-size: 0.8em;
+  margin: -1px;
+  padding: 0px;
+  background-color: #effaff;
+  border: 1px solid #f26c0d;
+  -moz-border-radius: 5px 0px 5px 0px;
+  -webkit-border-radius: 5px 0px 5px 0px;
+  border-radius: 5px 0px 5px 0px;
+  float: right;
+  width: 50%;
+}
+
+
