@@ -17,7 +17,6 @@ $(document).ready(function(){
       }
       if (obj.imageid)
       {
-        alert("img " + obj.imageid);
         $("#thumb").attr("src", "/_/img/" + obj.imageid);
         $("#imageid").attr("value", obj.imageid);
       }
@@ -27,7 +26,7 @@ $(document).ready(function(){
 </script>
 
 <div class="imageupload" style="float: <%= float %>"/>
-<img id="thumb" width="100px" height="100px" src="<%= image %>" alt="" /><br />
+<img id="thumb" width="100px" height="100px" src="/_/img/<%= image %>" alt="" /><br />
 <a href="" id="startupload">Browse for an image</a>
-<input type="hidden" id="imageid" name="imageid" />
+<input type="hidden" id="imageid" name="imageid" value="<%= image %>" />
 </div>

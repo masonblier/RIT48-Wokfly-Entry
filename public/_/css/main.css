@@ -182,7 +182,6 @@ article.stream
   font-size: 1em;
   margin: 10px auto;
   padding: 0px 0px;
-  min-height: 62px;
   
   border: 1px solid #d7e9a8;
   border-radius: 5px;
@@ -214,7 +213,7 @@ article.stream h1 { font-size: 1.2em; margin-top: 8px; }
 article.stream #streamby { font-size: 0.8em; color: #575; font-weight: normal; margin-bottom: 8px; }
 article.stream #streamby a { color: #5ba825; text-decoration: none; }
 
-article.stream #points
+article.stream .points
 {
   float: right;
   text-align: center;
@@ -230,15 +229,15 @@ article.stream #points
   border-radius: 5px;
 }
 
-article.stream #points div { clear: both; }
+article.stream .points div { clear: both; }
 
-article.stream #points #count
+article.stream .points .count
 {
   font-size: 2em;
   line-height: 36px;
 }
 
-article.stream #points #up
+article.stream .points .up
 {
   font-size: 0.8em;
   margin: -1px;
@@ -252,7 +251,7 @@ article.stream #points #up
   width: 50%;
 }
 
-article.stream #points #down
+article.stream .points .down
 {
   font-size: 0.8em;
   margin: -1px;
@@ -265,6 +264,9 @@ article.stream #points #down
   float: right;
   width: 50%;
 }
+
+article.stream .points .up:hover { background-color: #f26c0d; }
+article.stream .points .down:hover { background-color: #004f96; }
 
 /*- Forms
 ----------------------------------------------------------------------*/
@@ -470,6 +472,31 @@ div.imageupload:hover div
 }
 
 #register fieldset legend
+{
+  font-size: 1em; 
+  font-weight: bold;
+}
+
+#listedit fieldset
+{
+  background: #fff;
+  font-size: 1em;
+  margin: 10px auto;
+  padding: 10px 10px;
+  
+  border: 1px solid #d7e9a8;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+#listedit label
+{
+  float: none;
+  margin-right: 10px;
+}
+
+#listedit fieldset legend
 {
   font-size: 1em; 
   font-weight: bold;

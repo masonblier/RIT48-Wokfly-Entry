@@ -11,7 +11,17 @@ function defineModels(mongoose, fn) {
 	  */
 	User = new Schema({
 		'name'			: { type: String, unique: true },
-		'password'		: String
+		'password'		: String,
+		'points'		: Number
+	});
+
+	/**
+	  * Model: List
+	  */
+	List = new Schema({
+		'name'			: String,
+		'owner'			: ObjectId,
+		'items'			: [String]
 	});
 
 	/**
@@ -22,15 +32,25 @@ function defineModels(mongoose, fn) {
 		'author'		: String,
 		'lasteditor'	: String,
 		'image'			: String,
-		'points'		: Number,
 		'tags'			: [String],
 		'description'	: String,
 		'ingredients'	: [String],
 		'document'		: String
 	});
 
-	mongoose.model('User', User)
+	/**
+	  * Model: Vote
+	  */
+	Vote = new Schema({
+		'recipe'		: ObjectId,
+		'author'		: ObjectId,
+		'voter'			: ObjectId
+	});
+
+	mongoose.model('List', List);
+	mongoose.model('User', User);
 	mongoose.model('Recipe', Recipe);
+	mongoose.model('Vote', Vote);
 
 	fn();
 }

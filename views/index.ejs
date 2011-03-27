@@ -8,16 +8,68 @@
   </ul>
 </div> -->
 
+<script>
+    $(document).ready(function(){
+      var votes = new Array();
+      /* Upvote state fetch */
+      $(".points .up").each(function(key, value){
+        var id = value.id;
+
+        $.ajax({
+           type: "GET",
+           url: "/ajax/vote/"+id,
+           success: function(msg){
+             var data = $.parseJSON(msg);
+
+             $(".points #count"+id+"").text(data.votes);
+             if (data.state == true)
+             {
+               $("#"+id).css("background-color","#f26c0d");
+               votes[id] = 1;
+             }
+             else
+             {
+               $("#"+id).css("background-color","#ffecd6");
+               votes[id] = 0;
+             }
+           }
+         });
+      });
+      /* Quick and dirty upvote jquery */
+      $(".points .up").click(function(e){
+        var id = e.target.id;
+        if (votes[id] != 1)
+        {
+          var count = parseInt($(".points #count"+id+"").text()) + 1;
+          $(".points #count"+id+"").text(count);
+          $("#"+id).css("background-color","#f26c0d");
+          votes[id] = 1;
+        }
+        else
+        {
+          var count = parseInt($(".points #count"+id+"").text()) - 1;
+          $(".points #count"+id+"").text(count);
+          $("#"+id).css("background-color","#ffecd6");
+          votes[id] = 0;
+        }
+
+        $.ajax({
+           type: "GET",
+           url: "/ajax/upvote/"+id,
+         });
+      });
+    });
+</script>
+
 <% recipes.forEach(function(r) { %>
 <article class="stream">
   <img id="screen" src="/_/img/<%= r.image %>" alt="" />
-  <div id="points">
-    <div id="up">&nbsp;</div>
-    <div id="count"><%= r.points %></div>
-    <div id="down">&nbsp;</div>
+  <div class="points">
+    <div id="<%= r._id %>" class="up">&nbsp;</div>
+    <div id="count<%= r._id %>" class="count">1</div>
   </div>
   <h1><a href="/recipe/<%= r._id %>"><%= r.name %></a></h1>
-  <div id="streamby">by <a href="">No one</a></div>
+  <div id="streamby">by <a href=""><%= r.author %></a>, last edit by <a href=""><%= r.lasteditor %></a></div>
   <div id="content"><%= r.description %></div>
 </article>
 <% }); %>

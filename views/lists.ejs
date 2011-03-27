@@ -1,0 +1,13 @@
+<article class="stream" style="padding: 0px 5px 5px 5px;"><h1>Create a <a href="/list/add">new list</a></h1></article>
+
+<% lists.forEach(function(r) { %>
+<article class="stream" style="padding: 5px 10px 12px 20px; font-size: 0.8em;">
+<!-- maybe someday  <div id="points">
+    <div id="up">&nbsp;</div>
+    <div id="count"><%= r.points %></div>
+    <div id="down">&nbsp;</div>
+  </div> -->
+  <h1><a href="/list/<%= r._id %>"><%= r.name %></a></h1>
+  <%= r.items.join(", ") %>
+</article>
+<% }); %>

@@ -7,9 +7,10 @@ var sys = require('sys');
 module.exports = function(app){
 
 Recipe = app.Recipe;
+User = app.User;
 
 app.get('/recipe/new', function(req, res){
-  res.render('recipeadd', {});
+  res.render('recipeadd', {user: req.session.user});
 });
 
 app.post('/recipe/save', function(req, res){
@@ -19,6 +20,7 @@ app.post('/recipe/save', function(req, res){
   r.name = req.body.title;
   r.points = 0;
   r.author = req.session.user.name;
+  r.lasteditor = req.session.user.name;
   r.tags = req.body.tags.split(",");
   r.image = req.body.imageid;
   r.description = req.body.description;
@@ -52,19 +54,20 @@ app.post('/recipe/save/:id', function(req, res){
   });
 });
 
-app.get('/recipe/edit/:id', function(req, res){
+app.get('/recipe/edit/:id', function(req, res, next){
   Recipe.findById(req.params.id, function(err, r){
     if (!r)
       return next(new Error('Could not save recipe, existing entry not found!'));
     else
     {
-      var imgurl = "/images/empty.png";
+      var imgurl = "empty.png";
       if (r.image)
-        imgurl = "/_/img/" + r.image;
+        imgurl = r.image;
 
       res.render('recipeedit', {
         r: r,
-        image: imgurl
+        image: imgurl,
+        user: req.session.user
       });
     }
   });
@@ -79,7 +82,8 @@ app.get('/recipe/:id', function(req, res){
     
     res.render('recipe', {
       r: r,
-      instructions: require('markdown').markdown.toHTML(r.document)
+      instructions: require('markdown').markdown.toHTML(r.document),
+      user: req.session.user
     });
   });
 });

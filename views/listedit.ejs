@@ -1,0 +1,67 @@
+<form id="listedit" method="post" action="/list/save<%= action %>">
+  <fieldset>
+    <legend>Information</legend>
+    <ul id="recipeinformation">
+	  <li>
+        <label for="title">List Name</label>
+        <% if (enedit) { %>
+        <input id="title" name="title" type="text" value="<%= listname %>" required autofocus />
+        <% } else { %>
+        <em><%= listname %></em>
+        <% } %>
+      </li>
+    </ul>
+  </fieldset>
+  <fieldset>
+    <script>
+    $(document).ready(function(){
+      var ingredients = new Array();
+
+      /* Believe it or not, this is dynamically generated. I'll do it 
+         better when I have time to mess with json */
+      <% items.forEach(function(k) { %>
+      	ingredients.push("<%= k %>");
+	  <% }); %>
+
+      for (var i in ingredients)
+      {
+      	$("#ingredientlist").append("<li>" + ingredients[i] + "</li>");
+      }
+      var ingjson = ingredients.join("|");
+      $("#pipedlist").attr("value",ingjson);
+
+      $("#addingredient").click(function(e){
+        e.preventDefault();
+
+        var iname = $("#ingredient").val();
+        var iqnt = $("#quantity").val();
+        ingredients.push(iqnt+' '+iname);
+        $("#ingredientlist").append("<li>" + iqnt + " " + iname + "</li>");
+
+        var ingjson = ingredients.join("|");
+        $("#pipedlist").attr("value",ingjson);
+      });
+    });
+    </script>
+    <legend>List Items</legend>
+    <% if (enedit) { %>
+    <ul id="ingredientform">
+      <li><input type="hidden" id="pipedlist" name="pipedlist" /></li>
+      <li>
+        <label for="ingredient">Ingredient</label>
+        <input id="ingredient" name="ingredient" type="text" />
+        <label for="quantity">Amount</label>
+        <input id="quantity" name="quantity" type="text" 
+        <button id="addingredient">Add</button>
+      </li>
+    </ul>
+    <% } %>
+    <ul id="ingredientlist">
+    </ul>
+  </fieldset>
+  <% if (enedit) { %>
+  <fieldset>
+    <button type="submit">Post</button>
+  </fieldset>
+  <% } %>
+</form>

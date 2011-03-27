@@ -14,7 +14,10 @@ var crypto = require('crypto');
 var models = require('./models');
 
 var db,
-    Recipe;
+    User,
+    List,
+    Recipe,
+    Vote;
 
 var app = module.exports = express.createServer(
   express.cookieParser(),
@@ -46,6 +49,8 @@ app.configure('production', function(){
 models.defineModels(mongoose, function() {
   app.Recipe = Recipe = mongoose.model('Recipe');
   app.User = User = mongoose.model('User');
+  app.List = List = mongoose.model('List');
+  app.Vote = Vote = mongoose.model('Vote');
   db = mongoose.connect('mongodb://localhost/wokfly');
 });
 
@@ -166,6 +171,61 @@ app.post('/register', function(req, res) {
 
 require('./routes/ajax.js')(app);
 require('./routes/recipe.js')(app);
+
+app.get('/list/add', function(req, res, next){
+  res.render('listedit', {
+      action: "",
+      listname: "",
+      items: [],
+      enedit: true,
+      user: req.session.user
+  });
+});
+
+app.post('/list/save', function(req, res, next){
+  var l = new List();
+  var ing = new Array();
+
+  l.name = req.body.title;
+  l.owner = req.session.user._id;
+  l.items = req.body.pipedlist.split("|");
+
+  l.save();
+
+  req.flash('List saved!');
+  res.redirect('/list');
+});
+
+app.get('/list/:id', function(req, res, next){
+  List.findById(req.params.id, function(err, l){
+    if(!l)
+    {
+      console.log("Could not find list " + req.params.id);
+      res.redirect('/list');
+    }
+    else
+    {
+      res.render('listedit', {
+        action: "/"+l._id,
+        listname: l.name,
+        items: l.items,
+        enedit: (req.session.user._id == l.owner) ? true : false,
+        user: req.session.user
+      });
+    }
+  });
+});
+
+app.get('/list', function(req, res, next){
+  List.find({owner: req.session.user._id}, function(err, cursor){
+    if(err)
+      console.log("error on list display for user " + req.session.user.name + ": " + err.message);
+    res.render('lists', {
+        lists: cursor,
+        user: req.session.user
+    });
+  });
+});
 
 app.get('/', restrict, function(req, res){
   Recipe.find({}, function (err, cursor) {
