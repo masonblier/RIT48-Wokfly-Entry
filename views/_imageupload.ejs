@@ -1,0 +1,33 @@
+<script>
+$(document).ready(function(){
+  var imageUpload = $("#startupload").upload({
+    name: 'image',  
+    action: '/ajax/image',  
+    enctype: 'multipart/form-data',  
+    params: {upload:'Upload'},  
+    autoSubmit: true,  
+    onSubmit: function() {  
+      //do something when the form is submitted  
+    },  
+    onComplete: function(response) {  
+      var obj = jQuery.parseJSON(response);
+      if (obj.err)
+      {
+        alert("Upload error: " + err);
+      }
+      if (obj.imageid)
+      {
+        alert("img " + obj.imageid);
+        $("#thumb").attr("src", "/_/img/" + obj.imageid);
+        $("#imageid").attr("value", obj.imageid);
+      }
+    }
+  });
+});
+</script>
+
+<div class="imageupload" style="float: <%= float %>"/>
+<img id="thumb" width="100px" height="100px" src="<%= image %>" alt="" /><br />
+<a href="" id="startupload">Browse for an image</a>
+<input type="hidden" id="imageid" name="imageid" />
+</div>

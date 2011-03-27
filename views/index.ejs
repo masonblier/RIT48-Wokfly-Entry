@@ -10,13 +10,13 @@
 
 <% recipes.forEach(function(r) { %>
 <article class="stream">
-  <img id="screen" src="_/img/<%= r.iid %>.jpg" alt="" />
+  <img id="screen" src="/_/img/<%= r.image %>" alt="" />
   <div id="points">
     <div id="up">&nbsp;</div>
     <div id="count"><%= r.points %></div>
     <div id="down">&nbsp;</div>
   </div>
-  <h1><%= r.name %></h1>
+  <h1><a href="/recipe/<%= r._id %>"><%= r.name %></a></h1>
   <div id="streamby">by <a href="">No one</a></div>
   <div id="content"><%= r.description %></div>
 </article>

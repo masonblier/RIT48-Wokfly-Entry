@@ -6,27 +6,30 @@ function defineModels(mongoose, fn) {
 	var Schema = mongoose.Schema,
 		ObjectId = Schema.ObjectId;
 
-	/** 
-	  * Model: Ingredient
+	/**
+	  * Model: User
 	  */
-	Ingredient = new Schema({
-		'name'			: {type: String, index: true },
-		'brand'			: String
+	User = new Schema({
+		'name'			: { type: String, unique: true },
+		'password'		: String
 	});
 
 	/**
 	  * Model: Recipe
 	  */
 	Recipe = new Schema({
-		'iid'			: { type: Number, index: true },
 		'name'			: String,
+		'author'		: String,
+		'lasteditor'	: String,
+		'image'			: String,
 		'points'		: Number,
 		'tags'			: [String],
 		'description'	: String,
-		'ingredients'	: [Ingredient]
+		'ingredients'	: [String],
+		'document'		: String
 	});
 
-	mongoose.model('Ingredient', Ingredient);
+	mongoose.model('User', User)
 	mongoose.model('Recipe', Recipe);
 
 	fn();

@@ -1,0 +1,51 @@
+<form id="login" method="post" action="/login">
+  <fieldset>
+    <legend>Login</legend>
+    <ul id="login">
+      <% if (attempts) { %>
+      <li>
+      	Invalid username or password.
+      </li>
+      <% } %>
+      <li>
+        <label for="username">Name</label>
+        <input id="username" name="username" type="text" required autofocus />
+      </li>
+      <li>
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" />
+      </li>
+      <li>
+      	<button type="submit">Login</button>
+      </li>
+    </ul>  
+  </fieldset>
+</form>
+
+<form id="register" method="post" action="/register">
+  <fieldset>
+    <legend>Register</legend>
+    <ul id="register">
+    <% if (error) { %>
+      <li>
+      	<%= error %>
+      </li>
+      <% } %>
+      <li>
+        <label for="username">Name</label>
+        <input id="username" name="username" type="text" required autofocus />
+      </li>
+      <li>
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" />
+      </li>
+      <li>
+        <label for="password2">Confirm</label>
+        <input id="password2" name="password2" type="password" />
+      </li>
+      <li>
+      	<button type="submit">Register</button>
+      </li>
+    </ul>  
+  </fieldset>
+</form>

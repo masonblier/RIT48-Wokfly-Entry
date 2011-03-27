@@ -1,0 +1,39 @@
+<form id="editrecipe" method="post" action="/recipe/save/<%= r._id %>">
+<%- partial('imageupload', {locals: {float: "right", image: image } }) %>
+  <fieldset>
+    <legend>Recipe Information</legend>
+    <ul id="recipeinformation">
+      <li>
+        <label for="title">Recipe Name</label>
+        <input id="title" name="title" type="text" value="<%= r.name %>" required autofocus />
+      </li>
+      <li>
+        <label for="tags">Tags</label>
+        <input id="tags" name="tags" value="<%= r.tags.join(", ") %>" type="text" />
+      </li>
+      <li>
+        <label for="description">Short Description</label>
+        <textarea id="description" name="description" rows="3" required><%= r.description %></textarea>
+      </li>
+    </ul>  
+  </fieldset>
+  <fieldset>
+    <legend>Ingredients</legend>
+    <ul id="ingredientform">
+      <li>Ingredients cannot be edited in this version.</li>
+    </ul>
+    <ul id="ingredientlist">
+      <% if (r.ingredients) { r.ingredients.forEach(function(item){ %>
+        <li><%= item %></li>
+      <% }); } %>
+    </ul>
+  </fieldset>
+  <fieldset>
+    <legend>Instructions</legend>
+    <p class="small"><a href="http://daringfireball.net/projects/markdown/">Markdown</a> is supported in this field.</p>
+    <textarea id="document" name="document" rows="20" required><%= r.document %></textarea>
+  </fieldset>
+  <fieldset>
+    <button type="submit">Post</button>
+  </fieldset>
+</form>

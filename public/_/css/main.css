@@ -21,9 +21,30 @@ html
 {
   font-family: Tahoma, Geneva, sans-serif;
   color: #444;
-  background-color: #fff8ed;
+  background-color: #fffaef;
   margin: 25px 50px;
   min-width: 600px;
+}
+
+ul
+{
+  list-style: none;
+}
+
+.small
+{
+  font-size: 0.8em;
+}
+
+a
+{
+  color: #5ba825;
+  text-decoration: none;
+}
+
+a:hover
+{
+  text-decoration: underline;
 }
 
 /*- Header Style
@@ -66,6 +87,24 @@ nav#headermenu ul li
   font-size: 1.2em;
   padding: 5px 10px;
   margin: 0px 10px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+nav#headermenu ul li.subl
+{
+  margin-right: 0px;
+  -moz-border-radius: 5px 0px 0px 5px; 
+  -webkit-border-radius: 5px 0px 0px 5px; 
+  border-radius: 5px 0px 0px 5px; 
+}
+nav#headermenu ul li.subr
+{
+  margin-left: -5px;
+  -moz-border-radius: 0px 5px 5px 0px;
+  -webkit-border-radius: 0px 5px 5px 0px;
+  border-radius: 0px 5px 5px 0px;
 }
 
 nav#headermenu ul li:hover
@@ -82,7 +121,7 @@ nav#headermenu ul li:hover
 
 #logofly
 {
-  margin-left: -20px;
+  margin-left: -10px;
   font-family: "Segoe Script", "Brush Script MT", Georgia, serif;
   font-style: italic;
 }
@@ -104,7 +143,7 @@ nav#tagbar {
   -webkit-border-radius: 5px;
 }
 	
-nav#tagbar ul { list-style: none; margin: 0px auto; }
+nav#tagbar ul { margin: 0px auto; }
 nav#tagbar ul li 
 { 
   float: left; 
@@ -227,4 +266,211 @@ article.stream #points #down
   width: 50%;
 }
 
+/*- Forms
+----------------------------------------------------------------------*/
 
+#editrecipe fieldset
+{
+  border: none;
+  margin-top: 10px;
+}
+
+#editrecipe fieldset
+{
+  background: #fff;
+  font-size: 1em;
+  margin: 10px auto;
+  padding: 10px 10px;
+  
+  border: 1px solid #d7e9a8;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+#editrecipe ul#recipeinformation input, ul#recipeinformation textarea
+{
+  width: 300px;
+}
+
+#editrecipe label {
+  float: left;
+  width: 200px;
+}
+
+#editrecipe fieldset legend
+{
+  font-size: 1em; 
+  font-weight: bold;
+}
+
+/* CSS Selectors are pretty sweet imho */
+#editrecipe textarea#document
+{
+  width: 100%;
+}
+
+/*- Document
+----------------------------------------------------------------------*/
+
+.stream #commands
+{
+  background: #f2f2f2;
+  color: #444;
+  font-size: 1em;
+  margin: 0px -1px -1px -1px;
+  padding: 0px 10px;
+  height: 23px;
+  
+  border: 1px solid #d7e9a8;
+  -moz-border-radius: 0px 0px 5px 5px;
+  -webkit-border-radius: 0px 0px 5px 5px;
+  border-radius: 0px 0px 5px 5px;
+}
+
+
+.stream #commands ul { margin: 0px auto; }
+.stream #commands li
+{
+  display: inline;
+  float: left;
+  padding: 7px 15px 3px 15px;
+  font-size: 0.8em;
+  margin: -1px 3px;
+  color: #444;
+}
+
+.stream #commands li a
+{
+  color: #444;
+  text-decoration: none;
+}
+
+.stream #commands li#edit a:hover
+{
+  color: #a00010;
+  text-decoration: none;
+}
+
+.document
+{
+  background: #fff;
+  font-size: 0.9em;
+  margin: 10px auto;
+  padding: 10px 30px;
+  
+  border: 1px solid #d7e9a8;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;  
+}
+
+.document p { margin: 10px 0px; }
+.document p:first-child { margin-top: 0px; }
+
+/*- Image upload form
+-------------------------------------------------------*/
+
+div.imageupload{
+  background: #fff;
+  font-size: 1em;
+  margin: 8px 0px 0px 10px;
+  padding: 12px 10px;
+  text-align: center;
+
+  border: 1px solid #d7e9a8;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+div.imageupload:hover div
+{
+  text-decoration: underline;
+}
+
+/*- Ingredients
+----------------------------------------------------------*/
+
+#ingredientform label
+{
+  float: none;
+  margin-right: 10px;
+}
+
+#ingredientform #ingredient { margin-right: 10px; }
+
+#ingredientform #quantity
+{
+  width: 40px;
+}
+
+#ingredientform button
+{
+  width: 50px;
+  margin-left: 10px;
+}
+
+#ingredientlist
+{
+  margin: 5px 20px;
+}
+
+#ingredientlist li
+{
+  width: auto;
+  margin: 1px 0px;
+  padding: 3px 10px;
+  background: #f0f9c8;
+}
+
+/*- Login
+----------------------------------------------------------*/
+
+#login fieldset
+{
+  background: #fff;
+  font-size: 1em;
+  margin: 10px auto;
+  padding: 10px 10px;
+  
+  border: 1px solid #d7e9a8;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+#register fieldset
+{
+  background: #fff;
+  font-size: 1em;
+  margin: 10px auto;
+  padding: 10px 10px;
+  
+  border: 1px solid #d7e9a8;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+#login label {
+  float: left;
+  width: 100px;
+}
+
+#login fieldset legend
+{
+  font-size: 1em; 
+  font-weight: bold;
+}
+
+#register label {
+  float: left;
+  width: 100px;
+}
+
+#register fieldset legend
+{
+  font-size: 1em; 
+  font-weight: bold;
+}

@@ -1,0 +1,61 @@
+<form id="editrecipe" method="post" action="/recipe/save">
+<%- partial('imageupload', {locals: {float: "right", image: "/images/empty.png"} }) %>
+  <fieldset>
+    <legend>Recipe Information</legend>
+    <ul id="recipeinformation">
+      <li>
+        <label for="title">Recipe Name</label>
+        <input id="title" name="title" type="text" required autofocus />
+      </li>
+      <li>
+        <label for="tags">Tags</label>
+        <input id="tags" name="tags" type="text" />
+      </li>
+      <li>
+        <label for="description">Short Description</label>
+        <textarea id="description" name="description" rows="3" required></textarea>
+      </li>
+    </ul>  
+  </fieldset>
+  <fieldset>
+    <script>
+    $(document).ready(function(){
+      var ingredients = new Array();
+      $("#addingredient").click(function(e){
+        e.preventDefault();
+
+        var iname = $("#ingredient").val();
+        var iqnt = $("#quantity").val();
+        ingredients.push(iqnt+' '+iname);
+        $("#ingredientlist").append("<li>" + iqnt + " " + iname + "</li>");
+
+        var ingjson = ingredients.join("|");
+        $("#ingredientsjson").attr("value",ingjson);
+      });
+
+      $("#post").click(function(){alert("json: "+$("#ingredientsjson").val());});
+    });
+    </script>
+    <legend>Ingredients</legend>
+    <ul id="ingredientform">
+      <li><input type="hidden" id="ingredientsjson" name="ingredientsjson" /></li>
+      <li>
+        <label for="ingredient">Ingredient</label>
+        <input id="ingredient" name="ingredient" type="text" />
+        <label for="quantity">Amount</label>
+        <input id="quantity" name="quantity" type="text" 
+        <button id="addingredient">Add</button>
+      </li>
+    </ul>
+    <ul id="ingredientlist">
+    </ul>
+  </fieldset>
+  <fieldset>
+    <legend>Instructions</legend>
+    <p class="small"><a href="http://daringfireball.net/projects/markdown/">Markdown</a> is supported in this field.</p>
+    <textarea id="document" name="document" rows="20" required></textarea>
+  </fieldset>
+  <fieldset>
+    <button id="post" type="submit">Post</button>
+  </fieldset>
+</form>
