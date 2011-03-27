@@ -14,10 +14,31 @@ app.get('/recipe/new', function(req, res){
   res.render('recipeadd', {user: req.session.user});
 });
 
+app.get('/recipe/fork/:id', function(req, res){
+  Recipe.findById(req.params.id, function(err, r){
+    if (!r)
+      return next(new Error('Could not save recipe, existing entry not found!'));
+    else
+    {
+      var imgurl = "empty.png";
+      if (r.image)
+        imgurl = r.image;
+
+      r._id = "";
+      r.name = r.name + " [Modified]";
+
+      res.render('recipeedit', {
+        r: r,
+        image: imgurl,
+        user: req.session.user
+      });
+    }
+  });
+});
+
 app.post('/recipe/save', function(req, res){
   var r = new Recipe();
   var ing = new Array();
-
   r.name = req.body.title;
   r.points = 0;
   r.author = req.session.user.name;

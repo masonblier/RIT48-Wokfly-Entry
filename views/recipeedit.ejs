@@ -23,6 +23,8 @@
       <li>Ingredients cannot be edited in this version.</li>
     </ul>
     <ul id="ingredientlist">
+    <input id="ingredientsjson" name="ingredientsjson" type="hidden" 
+      value="<% if (r.ingredients) { %><%= r.ingredients.join("|") %><% } %>" />
       <% if (r.ingredients) { r.ingredients.forEach(function(item){ %>
         <li><%= item %></li>
       <% }); } %>

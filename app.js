@@ -221,6 +221,30 @@ app.post('/list/save', function(req, res, next){
   res.redirect('/list');
 });
 
+app.post('/list/save/:id', function(req, res, next){
+  List.findById(req.params.id, function(err, l){
+    var ing = new Array();
+
+    l.name = req.body.title;
+    l.owner = req.session.user._id;
+    l.items = req.body.pipedlist.split("|");
+
+    l.save();
+
+    var fd = new FeedElement({
+      category: "List Edited",
+      ownerid: req.session.user._id,
+      owner: req.session.user.name,
+      ownerimg: req.session.user.image,
+      event: "The list <a href=\"\">" + l.name + "</a> has been edited."
+    });
+    fd.save();
+
+    req.flash('List saved!');
+    res.redirect('/list');
+  });
+});
+
 app.get('/list/:id', function(req, res, next){
   List.findById(req.params.id, function(err, l){
     if(!l)
@@ -273,6 +297,6 @@ app.get('/', restrict, function(req, res){
 // Only listen on $ node app.js
 
 if (!module.parent) {
-  app.listen(3000);
+  app.listen(80);
   console.log("Express server listening on port %d", app.address().port);
 }

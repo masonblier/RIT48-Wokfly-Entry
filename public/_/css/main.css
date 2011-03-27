@@ -210,6 +210,8 @@ article.stream img#screen
 
 
 article.stream h1 { font-size: 1.2em; margin-top: 8px; }
+article.stream h1 a { color: #444; text-decoration: none; }
+article.stream h1 a:hover { text-decoration: underline; }
 article.stream #streamby { font-size: 0.8em; color: #575; font-weight: normal; margin-bottom: 8px; }
 article.stream #streamby a { color: #5ba825; text-decoration: none; }
 
@@ -348,9 +350,22 @@ article.stream .points .down:hover { background-color: #004f96; }
   text-decoration: none;
 }
 
+.stream #commands li#actions
+{
+  font-weight: bold;
+  padding: 7px 5px 3px 10px;
+  text-decoration: none;
+}
+
 .stream #commands li#edit a:hover
 {
   color: #a00010;
+  text-decoration: none;
+}
+
+.stream #commands li#fork a:hover
+{
+  color: #246594;
   text-decoration: none;
 }
 
@@ -359,7 +374,7 @@ article.stream .points .down:hover { background-color: #004f96; }
   background: #fff;
   font-size: 0.9em;
   margin: 10px auto;
-  padding: 10px 30px;
+  padding: 20px 30px;
   
   border: 1px solid #d7e9a8;
   border-radius: 5px;
@@ -367,7 +382,7 @@ article.stream .points .down:hover { background-color: #004f96; }
   -webkit-border-radius: 5px;  
 }
 
-.document p { margin: 10px 0px; }
+.document p { margin: 0px 0px; }
 .document p:first-child { margin-top: 0px; }
 
 /*- Image upload form
