@@ -17,6 +17,7 @@ var db,
     User,
     List,
     Recipe,
+    FeedElement,
     Vote;
 
 var app = module.exports = express.createServer(
@@ -50,6 +51,7 @@ models.defineModels(mongoose, function() {
   app.Recipe = Recipe = mongoose.model('Recipe');
   app.User = User = mongoose.model('User');
   app.List = List = mongoose.model('List');
+  app.FeedElement = FeedElement = mongoose.model('FeedElement');
   app.Vote = Vote = mongoose.model('Vote');
   db = mongoose.connect('mongodb://localhost/wokfly');
 });
@@ -152,8 +154,22 @@ app.post('/register', function(req, res) {
       }
       else if (!cursor)
       {
-        var acc = new User({ name: req.body.username, password: md5(req.body.password) });
+        var acc = new User({ 
+          name: req.body.username, 
+          password: md5(req.body.password),
+          image: req.body.imageid
+        });
         acc.save();
+
+        var fd = new FeedElement({
+          category: "New Member",
+          ownerid: acc._id,
+          owner: acc.name,
+          ownerimg: acc.image,
+          event: "Welcome our new member to the Wokfly community!"
+        });
+        fd.save();
+
         req.session.regenerate(function(){
           req.session.user = acc;
           res.redirect('/');
@@ -191,6 +207,15 @@ app.post('/list/save', function(req, res, next){
   l.items = req.body.pipedlist.split("|");
 
   l.save();
+
+  var fd = new FeedElement({
+    category: "List Created",
+    ownerid: req.session.user._id,
+    owner: req.session.user.name,
+    ownerimg: req.session.user.image,
+    event: "A new list has been created: " + l.name
+  });
+  fd.save();
 
   req.flash('List saved!');
   res.redirect('/list');

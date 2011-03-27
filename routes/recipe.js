@@ -8,6 +8,7 @@ module.exports = function(app){
 
 Recipe = app.Recipe;
 User = app.User;
+FeedElement = app.FeedElement;
 
 app.get('/recipe/new', function(req, res){
   res.render('recipeadd', {user: req.session.user});
@@ -29,6 +30,15 @@ app.post('/recipe/save', function(req, res){
 
   r.save();
 
+  var fd = new FeedElement({
+      category: "New Recipe",
+      ownerid: req.session.user._id,
+      owner: req.session.user.name,
+      ownerimg: req.session.user.image,
+      event: "A new recipe has been posted: <a href=\"/recipe/"+r._id+"\">"+r.name+"</a>"
+    });
+    fd.save();
+
   req.flash('Recipe saved!');
   res.redirect('/recipe/' + r._id);
 });
@@ -47,6 +57,15 @@ app.post('/recipe/save/:id', function(req, res){
       r.document = req.body.document;
 
       r.save();
+
+      var fd = new FeedElement({
+      category: "Recipe Edit",
+      ownerid: req.session.user._id,
+      owner: req.session.user.name,
+      ownerimg: req.session.user.image,
+      event: "A modification to the recipe <a href=\"/recipe/"+r._id+"\">"+r.name+"</a> has been made."
+    });
+    fd.save();
 
       req.flash('Edit saved!');
       res.redirect('/recipe/' + req.params.id);

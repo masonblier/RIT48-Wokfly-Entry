@@ -19,14 +19,15 @@ $(document).ready(function(){
       {
         $("#thumb").attr("src", "/_/img/" + obj.imageid);
         $("#imageid").attr("value", obj.imageid);
+        $("#startupload").text(obj.imagename);
       }
     }
   });
 });
 </script>
 
-<div class="imageupload" style="float: <%= float %>"/>
-<img id="thumb" width="100px" height="100px" src="/_/img/<%= image %>" alt="" /><br />
+<div class="<%= style %>"/>
+<img id="thumb" src="/_/img/<%= image %>" alt="" /><br />
 <a href="" id="startupload">Browse for an image</a>
 <input type="hidden" id="imageid" name="imageid" value="<%= image %>" />
 </div>

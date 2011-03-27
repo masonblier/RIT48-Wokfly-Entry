@@ -12,7 +12,7 @@ function defineModels(mongoose, fn) {
 	User = new Schema({
 		'name'			: { type: String, unique: true },
 		'password'		: String,
-		'points'		: Number
+		'image'			: String,
 	});
 
 	/**
@@ -31,11 +31,22 @@ function defineModels(mongoose, fn) {
 		'name'			: String,
 		'author'		: String,
 		'lasteditor'	: String,
-		'image'			: String,
+		'image'			: { type: String, default: "empty.png" },
 		'tags'			: [String],
 		'description'	: String,
 		'ingredients'	: [String],
 		'document'		: String
+	});
+
+	/**
+	  * Model: FeedElement
+	  */
+	FeedElement = new Schema({
+		'category'		: String,
+		'ownerid'		: ObjectId,
+		'owner'			: String,
+		'ownerimg'		: { type: String, default: "empty.png" },
+		'event'			: String
 	});
 
 	/**
@@ -50,6 +61,7 @@ function defineModels(mongoose, fn) {
 	mongoose.model('List', List);
 	mongoose.model('User', User);
 	mongoose.model('Recipe', Recipe);
+	mongoose.model('FeedElement', FeedElement);
 	mongoose.model('Vote', Vote);
 
 	fn();

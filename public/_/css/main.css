@@ -379,6 +379,7 @@ div.imageupload{
   margin: 8px 0px 0px 10px;
   padding: 12px 10px;
   text-align: center;
+  float: right;
 
   border: 1px solid #d7e9a8;
   -moz-border-radius: 5px;
@@ -389,6 +390,30 @@ div.imageupload{
 div.imageupload:hover div
 {
   text-decoration: underline;
+}
+
+div.imageupload #thumb
+{
+  width: 100px;
+  height: 100px;
+}
+
+div.registerimage
+{
+  text-align: center;
+  float: right;
+  margin: 0px 20px 0px 0px;
+}
+
+div.registerimage:hover div
+{
+  text-decoration: underline;
+}
+
+div.registerimage #thumb
+{
+  width: 80px;
+  height: 80px;
 }
 
 /*- Ingredients

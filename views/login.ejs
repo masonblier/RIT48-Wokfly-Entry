@@ -24,6 +24,7 @@
 
 <form id="register" method="post" action="/register">
   <fieldset>
+    <%- partial('imageupload', {locals: {style: "registerimage", image: "empty.png"} }) %>
     <legend>Register</legend>
     <ul id="register">
     <% if (error) { %>

@@ -85,17 +85,17 @@ app.post('/ajax/image', function(req, res){
       res.write('{ "err": "' + err.message + '" }');
       res.end();
     } else {
-      res.write('{ "imageid" : "'+path.basename(files.image.path)+'" }');
-      res.end();
+      var data = {imageid: path.basename(files.image.path), imagename: files.image.filename};
+      res.send(JSON.stringify(data));
     }
   });
 
   // We can add listeners for several form
   // events such as "progress"
-  req.form.on('progress', function(bytesReceived, bytesExpected){
+ /* req.form.on('progress', function(bytesReceived, bytesExpected){
     var percent = (bytesReceived / bytesExpected * 100) | 0;
     process.stdout.write('Uploading: %' + percent + '\r');
-  });
+  });*/
 });
 
 };
