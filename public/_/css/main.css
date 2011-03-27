@@ -526,3 +526,45 @@ div.registerimage #thumb
   font-size: 1em; 
   font-weight: bold;
 }
+
+/*- Feed
+----------------------------------------*/
+
+aside.feedelement
+{
+  clear: none;
+  float: left;
+  width: 156px;
+  height: 100px;
+  margin-right: 10px;
+  padding: 5px;
+  font-size: 0.8em;
+  background-color: #FFEAA5;
+
+  border: 1px solid #d7e9a8;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+aside.feedelement h1, aside.feedelement h2
+{
+  margin: 5px;
+  margin-left: 5px;
+}
+
+aside.feedelement p
+{
+  padding: 5px 0px;
+  clear: both;
+}
+
+aside.feedelement img
+{
+  width: 50px;
+  height: 40px;
+  float: left;
+  margin: 0px 5px 5px 0px;
+
+  border: 1px solid #d7e9a8;
+}

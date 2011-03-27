@@ -8,6 +8,17 @@
   </ul>
 </div> -->
 
+<% feed.forEach(function(f) { %>
+<aside class="feedelement">
+  <img id="screen" src="/_/img/<%= f.ownerimg %>" alt="" />
+  <h1><%= f.category %></h1>
+  <h2><a href=""><%= f.owner %></a></h2>
+  <p><%- f.event %></p>
+</aside>
+<% }); %>
+
+<div style="clear: both;"></div>
+
 <script>
     $(document).ready(function(){
       var votes = new Array();

@@ -253,15 +253,19 @@ app.get('/list', function(req, res, next){
 });
 
 app.get('/', restrict, function(req, res){
-  Recipe.find({}, function (err, cursor) {
+  FeedElement.find({}, [], { limit: 5 }, function(err, feeds){
     if (err)
-      console.log("Error on find all" + err);
+      console.log("Feed error: "+ err.message);
 
-      console.log(sys.inspect(req.session.user));
+    Recipe.find({}, function (err, cursor) {
+      if (err)
+        console.log("Error on find all" + err);
 
-    res.render('index', {
-      recipes: cursor,
-      user: req.session.user
+      res.render('index', {
+        recipes: cursor,
+        feed: feeds,
+        user: req.session.user
+      });
     });
   });
 });
