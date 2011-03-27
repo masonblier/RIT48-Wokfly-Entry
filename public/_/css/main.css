@@ -534,12 +534,12 @@ aside.feedelement
 {
   clear: none;
   float: left;
-  width: 156px;
-  height: 100px;
+  width: 170px;
+  height: 120px;
   margin-right: 10px;
   padding: 5px;
-  font-size: 0.8em;
-  background-color: #FFEAA5;
+  font-size: 0.9em;
+  background-color: #fff;
 
   border: 1px solid #d7e9a8;
   -moz-border-radius: 5px;
@@ -549,7 +549,7 @@ aside.feedelement
 
 aside.feedelement h1, aside.feedelement h2
 {
-  margin: 5px;
+  margin: 5px 5px 5px 5px;
   margin-left: 5px;
 }
 
@@ -557,12 +557,13 @@ aside.feedelement p
 {
   padding: 5px 0px;
   clear: both;
+  line-height: 16px;
 }
 
 aside.feedelement img
 {
   width: 50px;
-  height: 40px;
+  height: 50px;
   float: left;
   margin: 0px 5px 5px 0px;
 
