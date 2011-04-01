@@ -55,6 +55,16 @@
 	<script>!window.jQuery && document.write(unescape('%3Cscript src="js/libs/jquery-1.4.2.js"%3E%3C/script%3E'))</script>
 	<script src="/_/js/functions.js"></script>
 	<script src="/javascripts/jquery.ocupload-1.1.2.packed.js"></script>
+	<script>
+	$(document).ready(function() {
+    $('#contactemail').each(function(i) {
+        var text = $(this).text();
+        var address = text.replace(" at ", "@").replace("no","mason").replace("spam","blier");
+        $(this).attr('href', 'mailto:' + address);
+            $(this).text(address);
+        });
+    });
+	</script>
 </head>
 
 <body id="www-wokfly-com">
@@ -63,6 +73,8 @@
 
 	<header>
 		
+		<div id="contactalert">Hello visitors! This was the final product of an entry for the RIT48 startup competition, created entirely in 48 hours. Data stored on this site will not be carried through to future versions. You can contact me (Mason Blier) at <a id="contactemail">no.spam at gmail.com</a></div>
+
 		<h1><a href="/"><span id="logowok">Wok</span><span id="logofly">fly</span></a></h1>
 		<% if (typeof user != "undefined") { %>
     <nav id="headermenu">
@@ -79,6 +91,8 @@
     
     <h2>Worldly recipes, Local ingredients</h2>
 	</header>
+
+	<div style="clear:both;"></div>
 
 	<%- body %>
 

@@ -152,7 +152,7 @@ app.post('/register', function(req, res) {
       {
         res.render('login', {attempts: 0, error: "Error " + err.message});
       }
-      else if (!cursor)
+      else if (cursor.length <= 0)
       {
         var acc = new User({ 
           name: req.body.username, 
@@ -277,11 +277,11 @@ app.get('/list', function(req, res, next){
 });
 
 app.get('/', restrict, function(req, res){
-  FeedElement.find({}, [], { limit: 5 }, function(err, feeds){
+  FeedElement.find({}, [], { limit: 5, sort: {$natural: -1} }, function(err, feeds){
     if (err)
       console.log("Feed error: "+ err.message);
 
-    Recipe.find({}, function (err, cursor) {
+    Recipe.find({}, [], {sort: {$natural: -1}}, function (err, cursor) {
       if (err)
         console.log("Error on find all" + err);
 
